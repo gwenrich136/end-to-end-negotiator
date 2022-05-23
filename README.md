@@ -70,7 +70,6 @@ pip install visdom
 We use an action classifier to compare performance of various models. The action classifier is described in section 3 of (2). It can be trained by running the following command:
 ```
 python train.py \
---cuda \
 --bsz 16 \
 --clip 2.0 \
 --decay_every 1 \
@@ -93,14 +92,14 @@ python train.py \
 --unk_threshold 20 \
 --skip_values \
 --sep_sel \
---model_file selection_model.th
+--model_file selection_model.th \
+--cuda \
 ```
 
 ### Baseline RNN Model
 This is the baseline RNN model that we describe in (1):
 ```
 python train.py \
---cuda \
 --bsz 16 \
 --clip 0.5 \
 --decay_every 1 \
@@ -122,7 +121,8 @@ python train.py \
 --sel_weight 0.6 \
 --unk_threshold 20 \
 --sep_sel \
---model_file rnn_model.th
+--model_file rnn_model.th \
+--cuda
 ```
 
 ### Hierarchical Latent Model
@@ -131,7 +131,6 @@ In this section we provide guidelines on how to train the hierarchical latent mo
 **Clustering Model**
 ```
 python train.py \
---cuda \
 --bsz 16 \
 --clip 2.0 \
 --decay_every 1 \
@@ -156,13 +155,13 @@ python train.py \
 --skip_values \
 --nhid_cluster 256 \
 --selection_model_file selection_model.th \
---model_file clustering_model.th
+--model_file clustering_model.th \
+--cuda
 ```
 
 **Language Model**
 ```
 python train.py \
---cuda \
 --bsz 16 \
 --clip 2.0 \
 --decay_every 1 \
@@ -188,7 +187,8 @@ python train.py \
 --skip_values \
 --selection_model_file selection_model.th \
 --cluster_model_file clustering_model.th \
---model_file clustering_language_model.th
+--model_file clustering_language_model.th \
+--cuda \
 ```
 
 **Full Model**
@@ -218,19 +218,20 @@ python train.py \
 --sep_sel \
 --selection_model_file selection_model.th \
 --lang_model_file clustering_language_model.th \
---model_file full_model.th
+--model_file full_model.th \
+--cuda \
 ```
 
 ## Selfplay
 If you want to have two pretrained models to negotiate against each another, use `selfplay.py`. For example, lets have two rnn models to play against each other:
 ```
 python selfplay.py \
---cuda \
 --alice_model_file rnn_model.th \
 --bob_model_file rnn_model.th \
 --context_file data/negotiate/selfplay.txt  \
 --temperature 0.5 \
---selection_model_file selection_model.th
+--selection_model_file selection_model.th \
+--cuda \
 ```
 The script will output generated dialogues, as well as some statistics. For example:
 ```
