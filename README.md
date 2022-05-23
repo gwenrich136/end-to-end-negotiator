@@ -93,7 +93,7 @@ python train.py \
 --skip_values \
 --sep_sel \
 --model_file selection_model.th \
---cuda \
+--cuda
 ```
 
 ### Baseline RNN Model
@@ -188,7 +188,7 @@ python train.py \
 --selection_model_file selection_model.th \
 --cluster_model_file clustering_model.th \
 --model_file clustering_language_model.th \
---cuda \
+--cuda
 ```
 
 **Full Model**
@@ -219,7 +219,7 @@ python train.py \
 --selection_model_file selection_model.th \
 --lang_model_file clustering_language_model.th \
 --model_file full_model.th \
---cuda \
+--cuda
 ```
 
 ## Selfplay
@@ -231,7 +231,7 @@ python selfplay.py \
 --context_file data/negotiate/selfplay.txt  \
 --temperature 0.5 \
 --selection_model_file selection_model.th \
---cuda \
+--cuda
 ```
 The script will output generated dialogues, as well as some statistics. For example:
 ```
