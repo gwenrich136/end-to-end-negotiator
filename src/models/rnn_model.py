@@ -315,6 +315,9 @@ class RnnModel(nn.Module):
         ctx_h = self.forward_context(ctx)
         lang_h = self.zero_h(ctx_h.size(1), self.args.nhid_lang)
 
+        print("Context: ", ctx)
+        print("Input", inpt)
+
         inpt_emb = self.word_encoder(inpt)
         inpt_emb = self.word_encoder_dropout(inpt_emb)
 
